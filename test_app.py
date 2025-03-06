@@ -17,7 +17,7 @@ class TestMLApp(unittest.TestCase):
 
     def test_predict_endpoint(self):
         # Sample Iris features (Setosa)
-        test_features = [5.1, 3.5, 1.4, 0.2]
+        test_features = [5.2, 3.6, 1.9, 1.2]
         response = self.app.post('/predict',
                                  data=json.dumps({'features': test_features}),
                                  content_type='application/json')
