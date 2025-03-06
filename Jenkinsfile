@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = "mtalal12/mlopsa1" 
-        DOCKER_CREDENTIALS_ID = "your-jenkins-docker-credentials-id"  // Replace with your stored credentials ID
+        DOCKER_CREDENTIALS_ID = "96eb60ee-95d2-4b2a-b26c-73c8f5ebc362"  // Replace with your stored credentials ID
     }
 
     stages {
