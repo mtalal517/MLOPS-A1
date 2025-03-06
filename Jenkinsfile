@@ -46,5 +46,22 @@ pipeline {
 
             }
         }
+
+        stage('Cleanup') 
+        {
+            steps {
+                script {
+                    // Stop any running container using the image
+                    bat 'docker ps -q --filter ancestor=mtalal12/mlopsa1:latest | for /f %i in (\'more\') do docker stop %i'
+
+                    // Remove the stopped container
+                    bat 'docker ps -a -q --filter ancestor=mtalal12/mlopsa1:latest | for /f %i in (\'more\') do docker rm %i'
+
+                    // Now, remove the image
+                    bat 'docker rmi -f mtalal12/mlopsa1:latest'
+                }
+            }
+}
+
     }
 }
