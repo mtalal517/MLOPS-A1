@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script 
                 {
-                    sh "docker build -t ${DOCKER_HUB_REPO}:latest ."
+                    bat "docker build -t ${DOCKER_HUB_REPO}:latest ."
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: "${DOCKER_CREDENTIALS_ID}", usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                        bat "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
                     }
                 }
             }
@@ -35,14 +35,14 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh "docker push ${DOCKER_HUB_REPO}:latest"
+                    bat "docker push ${DOCKER_HUB_REPO}:latest"
                 }
             }
         }
 
         stage('Cleanup') {
             steps {
-                sh "docker rmi ${DOCKER_HUB_REPO}:latest"
+                bat "docker rmi ${DOCKER_HUB_REPO}:latest"
 
             }
         }
