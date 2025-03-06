@@ -42,26 +42,16 @@ pipeline {
 
         stage('Cleanup') {
             steps {
-                bat "docker rmi ${DOCKER_HUB_REPO}:latest"
+            script {
+            // Stop and remove any running containers using the image
+            bat 'docker ps -q --filter ancestor=${DOCKER_HUB_REPO}:latest | for /f %i in (\'more\') do docker stop %i'
+            bat 'docker ps -aq --filter ancestor=${DOCKER_HUB_REPO}:latest | for /f %i in (\'more\') do docker rm %i'
+
+            // Remove the image forcefully
+            bat "docker rmi -f ${DOCKER_HUB_REPO}:latest"
+        }
 
             }
         }
-
-        stage('Cleanup') 
-        {
-            steps {
-                script {
-                    // Stop any running container using the image
-                    bat 'docker ps -q --filter ancestor=mtalal12/mlopsa1:latest | for /f %i in (\'more\') do docker stop %i'
-
-                    // Remove the stopped container
-                    bat 'docker ps -a -q --filter ancestor=mtalal12/mlopsa1:latest | for /f %i in (\'more\') do docker rm %i'
-
-                    // Now, remove the image
-                    bat 'docker rmi -f mtalal12/mlopsa1:latest'
-                }
-            }
-}
-
     }
 }
