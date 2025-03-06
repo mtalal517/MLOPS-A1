@@ -15,7 +15,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
+                script 
+                {
                     sh "docker build -t ${DOCKER_HUB_REPO}:latest ."
                 }
             }
