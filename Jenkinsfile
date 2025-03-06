@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_REPO = "mtalal12/mlops-a1"  // Replace with your Docker Hub username & repo
+        DOCKER_HUB_REPO = "mtalal12/mlopsa1"  // Replace with your Docker Hub username & repo
         DOCKER_CREDENTIALS_ID = "your-jenkins-docker-credentials-id"  // Replace with your stored credentials ID
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/mtalal517/MLOPS-A1.git'
+                git branch: 'main', url: 'https://github.com/mtalal517/MLOPS-A1.git'
             }
         }
 
