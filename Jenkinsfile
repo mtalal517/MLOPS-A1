@@ -42,6 +42,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 sh "docker rmi ${DOCKER_HUB_REPO}:latest"
+                
             }
         }
     }
