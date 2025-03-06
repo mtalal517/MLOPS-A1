@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import joblib
 
+
 def train_model():
     # Load data
     iris = load_iris()
@@ -25,6 +26,7 @@ def train_model():
     joblib.dump(model, 'model.pkl')
 
     return accuracy
+
 
 if __name__ == "__main__":
     train_model()
