@@ -1,15 +1,17 @@
-FROM python:3.8-slim
+# Use an official Python runtime as base
+FROM python:3.9
 
+# Set the working directory in the container
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy the contents into the container
+COPY . /app
 
-COPY . .
+# Install dependencies
+RUN pip install -r requirements.txt
 
-# Train the model when building the image
-RUN python train.py
-
+# Expose the port (if needed)
 EXPOSE 5000
 
+# Command to run the application
 CMD ["python", "app.py"]
