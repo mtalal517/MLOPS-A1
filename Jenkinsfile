@@ -42,15 +42,7 @@ pipeline {
 
         stage('Cleanup') {
             steps {
-                script 
-                {
-                    // Stop and remove any running containers using the image
-                    bat 'docker ps -q --filter ancestor=${DOCKER_HUB_REPO}:latest | for /f %i in (\'more\') do docker stop %i'
-                    bat 'docker ps -aq --filter ancestor=${DOCKER_HUB_REPO}:latest | for /f %i in (\'more\') do docker rm %i'
-
-                    // Remove the image forcefully
-                    bat "docker rmi -f ${DOCKER_HUB_REPO}:latest"
-                }
+                bat "docker rmi ${DOCKER_HUB_REPO}:latest"
 
             }
         }
