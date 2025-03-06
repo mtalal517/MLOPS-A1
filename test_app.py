@@ -1,7 +1,8 @@
 import unittest
 import json
-import numpy as np
+# Removing unused import
 from app import app
+
 
 class TestMLApp(unittest.TestCase):
     def setUp(self):
@@ -16,14 +17,15 @@ class TestMLApp(unittest.TestCase):
     
     def test_predict_endpoint(self):
         # Sample Iris features (Setosa)
-        test_features = [5.1, 3.5, 1.4, 0.2]  
+        test_features = [5.1, 3.5, 1.4, 0.2]
         response = self.app.post('/predict',
-                               data=json.dumps({'features': test_features}),
-                               content_type='application/json')
+                                 data=json.dumps({'features': test_features}),
+                                 content_type='application/json')
         data = json.loads(response.data)
         self.assertEqual(response.status_code, 200)
         self.assertIn('prediction', data)
         self.assertIn('class', data)
+
 
 if __name__ == '__main__':
     unittest.main()
