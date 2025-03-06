@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/mtalal517/MLOPS-A1.git'
+                git branch: 'dev', url: 'https://github.com/mtalal517/MLOPS-A1.git'
             }
         }
 
@@ -42,7 +42,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 sh "docker rmi ${DOCKER_HUB_REPO}:latest"
-                
+
             }
         }
     }
