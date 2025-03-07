@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 app = Flask(__name__)
 
 
+
 # Load model if exists, otherwise train
 try:
     model = joblib.load('model.pkl')
