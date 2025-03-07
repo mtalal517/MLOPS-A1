@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify, render_template , joblib
-#import joblib
+from flask import Flask, request, jsonify, render_template
+import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
@@ -7,7 +7,6 @@ from sklearn.model_selection import train_test_split
 
 
 app = Flask(__name__)
-
 
 
 # Load model if exists, otherwise train
