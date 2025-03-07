@@ -72,7 +72,8 @@ pipeline {
         )
     }
     
-    always {
+    always 
+    {
         // Clean up workspace
         cleanWs()
     }
